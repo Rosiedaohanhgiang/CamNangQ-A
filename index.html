@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Truyền Thông Dự Án - HOAN TT</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Oswald -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ionicons CDN (cho các biểu tượng) -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #f7fafc; /* light gray */
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5C6BC0;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a237e;
+        }
+        
+        /* Lớp active cho tab */
+        .tab-btn.active {
+            border-bottom-color: #FF9800; /* Orange */
+            color: #FF9800;
+            font-weight: 600;
+            background-color: rgba(255, 152, 0, 0.05);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+            position: relative;
+            padding-left: 40px;
+            padding-bottom: 24px;
+            border-left: 3px solid #5C6BC0;
+        }
+        .timeline-item:last-child {
+            border-left: 3px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -14px;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-[#1a237e] text-white p-6 shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold tracking-wider uppercase">
+                CẨM NANG TRUYỀN THÔNG DỰ ÁN
+            </h1>
+            <p class="text-lg text-[#FF9800] font-light tracking-wide mt-1">
+                Lộ Trình Chuyển Đổi Tăng Tốc cho HOAN TT (Q&A)
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 md:p-8 flex-grow">
+
+        <!-- Thanh Tabs điều hướng -->
+        <div class="flex flex-wrap justify-center border-b border-gray-300 mb-8 shadow-sm rounded-lg bg-white overflow-hidden">
+            <button class="tab-btn active text-base md:text-lg font-medium py-4 px-3 md:px-5 text-gray-600 border-b-4 border-transparent hover:text-[#FF9800] hover:bg-gray-50 transition-all flex-grow md:flex-grow-0" data-tab="1">Quy Tắc & Thông Điệp Cốt Lõi</button>
+            <button class="tab-btn text-base md:text-lg font-medium py-4 px-3 md:px-5 text-gray-600 border-b-4 border-transparent hover:text-[#FF9800] hover:bg-gray-50 transition-all flex-grow md:flex-grow-0" data-tab="2">Q&A cho Nhân Viên</button>
+            <button class="tab-btn text-base md:text-lg font-medium py-4 px-3 md:px-5 text-gray-600 border-b-4 border-transparent hover:text-[#FF9800] hover:bg-gray-50 transition-all flex-grow md:flex-grow-0" data-tab="3">Q&A cho Quản Lý</button>
+            <button class="tab-btn text-base md:text-lg font-medium py-4 px-3 md:px-5 text-gray-600 border-b-4 border-transparent hover:text-[#FF9800] hover:bg-gray-50 transition-all flex-grow md:flex-grow-0" data-tab="4">Kế Hoạch & Kênh</button>
+        </div>
+        
+        <!-- Nội dung Tabs -->
+        <div id="tab-content-container">
+            
+            <!-- Tab 1: Quy Tắc & Thông Điệp Cốt Lõi -->
+            <div id="tab-1" class="tab-content active">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl border border-gray-200">
+                    <h2 class="text-3xl font-semibold text-[#1a237e] mb-6 border-b-2 border-[#FF9800] pb-3">
+                        1. Quy Tắc Truyền Thông (Do & Don't)
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 gap-8 mb-8"> <!-- Thay đổi: Bỏ md:grid-cols-2 để mỗi quy tắc có độ rộng tối đa -->
+                        
+                        <!-- Quy tắc 1 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                            <div class="flex items-start space-x-4">
+                                <ion-icon name="eye-outline" class="text-4xl text-[#009688] flex-shrink-0 mt-1"></ion-icon>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#1a237e]">Minh bạch & Trung thực</h3>
+                                    <p class="text-base text-gray-700 mt-1 mb-4">Không né tránh các câu hỏi khó. Thừa nhận rằng sự thay đổi sẽ có những thách thức, nhưng đây là điều cần thiết.</p>
+                                    
+                                    <strong class="text-[#009688] text-lg font-semibold">Cách đúng (Do):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 my-2 pl-4">
+                                        <li>"Anh/chị hiểu là sắp tới sẽ có thay đổi về quy trình, và chắc chắn ban đầu sẽ có bỡ ngỡ. Nhưng đây là điều cần thiết để chúng ta giải quyết..."</li>
+                                        <li>"Câu hỏi về lương 3P là rất chính đáng. Mục tiêu của nó là CÔNG BẰNG, không phải giảm lương. Chúng ta sẽ cùng nhau mô phỏng ở GĐ 2."</li>
+                                    </ul>
+                                    
+                                    <strong class="text-red-600 text-lg font-semibold">Cách sai (Don't):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 mt-2 pl-4">
+                                        <li>"Không có gì thay đổi lớn đâu, mọi người cứ yên tâm làm việc." (Nói dối, che giấu)</li>
+                                        <li>"Việc này Ban Lãnh đạo quyết rồi, mọi người không cần thắc mắc." (Né tránh, áp đặt)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quy tắc 2 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                            <div class="flex items-start space-x-4">
+                                <ion-icon name="rocket-outline" class="text-4xl text-[#009688] flex-shrink-0 mt-1"></ion-icon>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#1a237e]">Hướng đến Tương lai, Không Đổ lỗi</h3>
+                                    <p class="text-base text-gray-700 mt-1 mb-4">Nhấn mạnh mục đích "xây dựng tương lai", không phải "tìm lỗi" quá khứ. Đây là "vấn đề hệ thống" cần cải thiện.</p>
+                                    
+                                    <strong class="text-[#009688] text-lg font-semibold">Cách đúng (Do):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 my-2 pl-4">
+                                        <li>"Chúng ta nhận thấy quy trình duyệt chi hiện tại đang gây tắc nghẽn cho nhiều phòng ban. Dự án này sẽ giúp chúng ta xây một 'đường cao tốc' mới."</li>
+                                        <li>"Sự phối hợp giữa Sales và MKT chưa hiệu quả là do chúng ta thiếu 'luật chơi' chung (SLA). Giờ chúng ta sẽ cùng nhau xây dựng nó."</li>
+                                    </ul>
+                                    
+                                    <strong class="text-red-600 text-lg font-semibold">Cách sai (Don't):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 mt-2 pl-4">
+                                        <li>"Tại phòng Kế toán làm việc cứng nhắc quá nên giờ phải thay đổi." (Đổ lỗi cho phòng ban)</li>
+                                        <li>"Trước đây chúng ta làm sai hết rồi. Giờ phải làm lại từ đầu." (Phủ định quá khứ)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quy tắc 3 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                            <div class="flex items-start space-x-4">
+                                <ion-icon name="help-circle-outline" class="text-4xl text-[#009688] flex-shrink-0 mt-1"></ion-icon>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#1a237e]">Tập trung vào "Tại sao"</h3>
+                                    <p class="text-base text-gray-700 mt-1 mb-4">Luôn quay về "Lý do Kinh doanh" (Thế kẹt). Chúng ta làm điều này vì chúng ta đủ dũng cảm để giải quyết vấn đề.</p>
+                                    
+                                    <strong class="text-[#009688] text-lg font-semibold">Cách đúng (Do):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 my-2 pl-4">
+                                        <li>"Lý do chúng ta phải làm PMS là vì chúng ta đang bị 'thế kẹt', đánh giá cảm tính, gây bất công. Hệ thống mới này sẽ giúp chúng ta..."</li>
+                                        <li>"Nhắc lại, chúng ta làm việc này vì muốn thoát khỏi xung đột nội bộ và tăng tốc, giúp công ty mạnh hơn và công việc của mọi người rõ ràng hơn."</li>
+                                    </ul>
+                                    
+                                    <strong class="text-red-600 text-lg font-semibold">Cách sai (Don't):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 mt-2 pl-4">
+                                        <li>"Công ty thuê tư vấn rồi thì chúng ta cứ thế làm theo thôi." (Không giải thích "Tại sao")</li>
+                                        <li>"Đây là xu thế 4.0 rồi, công ty nào giờ cũng làm vậy." (Lý do hời hợt, không gắn với Hoan TT)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quy tắc 4 -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                            <div class="flex items-start space-x-4">
+                                <ion-icon name="people-outline" class="text-4xl text-[#009688] flex-shrink-0 mt-1"></ion-icon>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[#1a237e]">Nhấn mạnh "Cùng nhau"</h3>
+                                    <p class="text-base text-gray-700 mt-1 mb-4">Đây là dự án CỦA CHÚNG TA, không phải của Ban Lãnh đạo hay tư vấn "áp đặt" xuống. Sự tham gia là then chốt.</p>
+                                    
+                                    <strong class="text-[#009688] text-lg font-semibold">Cách đúng (Do):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 my-2 pl-4">
+                                        <li>"Đây là dự án của Hoan TT. Chị Rosie chỉ dẫn dắt, còn người xây dựng Sổ tay Văn hóa chính là các bạn."</li>
+                                        <li>"Chúng tôi rất cần phản hồi của anh/chị ở phòng Sales khi áp dụng thử RACI, vì các bạn là người hiểu rõ nhất."</li>
+                                    </ul>
+                                    
+                                    <strong class="text-red-600 text-lg font-semibold">Cách sai (Don't):</strong>
+                                    <ul class="list-disc list-inside text-base text-gray-700 space-y-2 mt-2 pl-4">
+                                        <li>"Ban Giám Đốc và bên tư vấn sẽ áp dụng hệ thống này xuống cho các bạn." ("Áp đặt" từ trên xuống)</li>
+                                        <li>"Đây là dự án của phòng HR, mọi người phối hợp." (Thu hẹp phạm vi, tạo "silo")</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-3xl font-semibold text-[#1a237e] mb-6 border-b-2 border-[#FF9800] pb-3">
+                        2. Thông Điệp Cốt Lõi (Core Message)
+                    </h2>
+                    <div class="bg-gradient-to-r from-[#1a237e] to-[#5C6BC0] text-white p-8 rounded-lg shadow-lg">
+                        <blockquote class="text-2xl font-medium leading-relaxed italic border-l-4 border-[#FF9800] pl-6">
+                            "Dự án này không phải để tìm ra ai sai, ai đúng. Đây là dự án để TẤT CẢ CHÚNG TA cùng nhau xây dựng một 'hệ điều hành' tốt hơn, rõ ràng hơn, công bằng hơn, giúp HOAN TT phát triển mạnh mẽ và giúp công việc của mỗi cá nhân bớt mệt mỏi hơn."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Q&A cho Nhân Viên -->
+            <div id="tab-2" class="tab-content">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl border border-gray-200">
+                    <h2 class="text-3xl font-semibold text-[#1a237e] mb-6 border-b-2 border-[#FF9800] pb-3">
+                        Câu Hỏi Thường Gặp (Toàn thể Nhân viên)
+                    </h2>
+                    
+                    <!-- Accordion Section 1 -->
+                    <h3 class="text-2xl font-bold text-gray-700 mb-4">A. Về Tổng quan Dự án</h3>
+                    <div class="accordion-container space-y-3 mb-8">
+                        <!-- Q1 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Tại sao công ty lại đột ngột thực hiện dự án này? Mọi thứ vẫn đang ổn mà?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> "Ổn" là điều tốt, nhưng Ban Lãnh đạo muốn chúng ta phải "Xuất sắc". Thực tế, chúng ta đang gặp phải "thế kẹt": dù sản phẩm/thương hiệu tốt nhưng nội bộ vận hành còn nhiều xung đột, đổ lỗi, thiếu rõ ràng.</p>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ:</strong> Một lô hàng bị chậm, Sales và Marketing có thể không thống nhất được thông tin gửi cho khách hàng, hoặc đổ lỗi cho nhau, gây lãng phí thời gian và làm khách hàng bực bội. Dự án này là để xây dựng quy trình rõ ràng cho những việc đó.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: "Sprint 4 tháng" nghĩa là chúng tôi sẽ phải làm việc nhiều hơn, vất vả hơn à?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> "Sprint" không có nghĩa là làm việc nhiều giờ hơn, mà là tập trung nguồn lực để "xây dựng nền tảng" nhanh hơn. Thay vì làm lẻ tẻ mất vài năm, chúng ta tập trung xây dựng toàn bộ "Hệ điều hành v1.0" trong 4 tháng.</p>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ (ẩn dụ):</strong> Hãy tưởng tượng chúng ta đang xây nhà. Thay vì năm nay xây móng, năm sau xây tường, chúng ta sẽ tập trung hoàn thiện toàn bộ 'khung xương' (móng, cột, mái) trong 4 tháng đầu. Có thể sẽ có nhiều buổi workshop tập trung, nhưng mục tiêu là để có 'nhà' vào ở sớm hơn, thay vì sống ở công trường 2-3 năm.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Bên tư vấn (Build Talents) sẽ vào và quyết định hết mọi thứ à?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Không. Ban Lãnh đạo HOAN TT là người ra quyết định cuối cùng. Bên tư vấn (chị Rosie) đóng vai trò là chuyên gia "dẫn dắt", cung cấp phương pháp luận, công cụ. Nhưng người hiểu rõ HOAN TT nhất và người xây dựng chính là CHÚNG TA.</p>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ (ẩn dụ):</strong> Chị Rosie giống như một 'huấn luyện viên' và 'trọng tài'. Chị ấy cung cấp chiến thuật (phương pháp) và đảm bảo chúng ta 'chơi đúng luật'. Nhưng 'người đá' và 'ghi bàn' trên sân chính là đội ngũ HOAN TT.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Section 2 -->
+                    <h3 class="text-2xl font-bold text-gray-700 mb-4">B. Về Tác động đến Cá nhân</h3>
+                    <div class="accordion-container space-y-3 mb-8">
+                        <!-- Q4 -->
+                        <div class="border-2 border-red-200 rounded-lg overflow-hidden bg-red-50">
+                            <div class="accordion-header flex justify-between items-center p-5">
+                                <h4 class="text-lg font-bold text-red-700">Q: CÂU HỎI QUAN TRỌNG NHẤT: Dự án này có dẫn đến cắt giảm nhân sự không?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-red-700"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-red-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-red-700 text-lg">A: Thông điệp trả lời phải rõ ràng và nhất quán: KHÔNG.</strong></p>
+                                    <p>Mục tiêu của dự án này là để "tăng trưởng" chứ không phải "cắt giảm". Chúng ta đang giải quyết vấn đề về "hiệu suất" và "sự rõ ràng", không phải vấn đề "thừa người". Dự án này là để giúp mọi người làm việc hiệu quả hơn, gắn kết hơn và giúp công ty giữ chân nhân tài tốt hơn (mục tiêu là giảm tỷ lệ 25% nghỉ việc).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q5 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Vai trò và công việc của tôi có bị thay đổi không?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Có thể. Một trong những mục tiêu lớn nhất của dự án là "làm rõ luật chơi". Điều này có nghĩa là:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>Mô tả công việc (MTCV) của bạn sẽ rõ ràng hơn.</li>
+                                        <li>Mục tiêu (OKRs/KPIs) của bạn sẽ được chuẩn hóa.</li>
+                                        <li>Bạn sẽ biết rõ ai chịu trách nhiệm cho việc gì (qua Ma trận RACI).</li>
+                                    </ul>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ về RACI:</strong><br>
+                                        - <strong class="text-gray-700">Trước đây:</strong> Khi tung sản phẩm mới, không rõ Sales phải chốt thông tin A hay Marketing phải chốt.<br>
+                                        - <strong class="text-gray-700">Sau khi có RACI:</strong> Sẽ quy định rõ: Marketing (R) chịu trách nhiệm soạn nội dung, Sales (A) là người Phê duyệt cuối cùng, Kế toán (C) được thông báo. Mọi thứ sẽ rõ ràng, không còn chồng chéo.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q6 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Lương của tôi có bị ảnh hưởng không? Công ty xây dựng Lương 3P có phải là để giảm lương không?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Không, mục tiêu là để <strong class="text-[#1a237e]">TĂNG SỰ CÔNG BẰNG</strong>. Hệ thống lương 3P (ở Giai đoạn 2) được xây dựng để đảm bảo sự minh bạch. Nó trả thưởng dựa trên 3 yếu tố: 1-Vị trí (P1), 2-Năng lực (P2), và 3-Thành tích (P3).</p>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ:</strong> Trước đây hai người cùng vị trí có thể có mức lương gần giống nhau dù năng lực và kết quả khác nhau. Với Lương 3P:<br>
+                                        - <strong class="text-gray-700">P2 (Năng lực):</strong> Chuyên viên A có năng lực (ví dụ: kỹ năng phân tích) tốt hơn sẽ được đánh giá cao hơn.<br>
+                                        - <strong class="text-gray-700">P3 (Thành tích):</strong> Nhân viên B hoàn thành vượt OKRs/KPIs sẽ có khoản thưởng thành tích rõ rệt. Điều này khuyến khích mọi người phát triển và cống hiến, thay vì "cào bằng".</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q7 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Tại sao tôi phải làm các bài khảo sát? Tôi thấy nó mất thời gian và không tin tưởng lắm.</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Khảo sát là cách duy nhất để Ban Lãnh đạo "lắng nghe" được tiếng nói của tất cả mọi người một cách có hệ thống. Giống như đi khám bệnh, chúng ta cần "chẩn đoán" (GĐ1) trước khi "kê đơn". Chúng tôi cam kết các khảo sát này là <strong class="text-[#1a237e]">hoàn toàn ẩn danh</strong> và được xử lý bởi bên tư vấn.</p>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ:</strong> Nếu 70% nhân viên nói rằng họ 'không rõ mục tiêu công ty' trong khảo sát, Ban Lãnh đạo sẽ biết đây là vấn đề ưu tiên số 1 cần giải quyết trong dự án.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Section 3 -->
+                    <h3 class="text-2xl font-bold text-gray-700 mb-4">C. Về Sự tham gia</h3>
+                    <div class="accordion-container space-y-3">
+                        <!-- Q8 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Tôi cần làm gì trong dự án này?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Chúng tôi cần ở bạn 3 điều:</p>
+                                    <ul class="list-decimal list-inside ml-4 space-y-1">
+                                        <li><strong>Sự cởi mở:</strong> Sẵn sàng đón nhận và thử nghiệm các phương pháp, quy trình mới.</li>
+                                        <li><strong>Sự trung thực:</strong> Tham gia khảo sát và các buổi workshop một cách thẳng thắn và xây dựng.</li>
+                                        <li><strong>Sự kiên nhẫn:</strong> Thay đổi hệ thống cần thời gian. Sẽ có vấp váp, nhưng chúng ta sẽ cùng nhau tinh chỉnh.</li>
+                                    </ul>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ:</strong> Khi chúng ta áp dụng thử quy trình OKRs mới, chắc chắn sẽ có lúng túng. Thay vì nói 'cái này không hoạt động', chúng tôi cần bạn nói 'Tôi thấy lúng túng ở bước 2, chúng ta có thể làm nó đơn giản hơn không?'. Đó chính là sự tham gia xây dựng.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q9 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-gray-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: Nếu tôi có thắc mắc hoặc lo lắng, tôi nên nói với ai?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Kênh đầu tiên và quan trọng nhất là <strong class="text-[#1a237e]">quản lý trực tiếp</strong> của bạn. Ngoài ra, dự án sẽ có một kênh thông tin chính thức (ví dụ: email dự án, hoặc đội dự án nội bộ) để bạn gửi các câu hỏi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: Q&A cho Quản Lý -->
+            <div id="tab-3" class="tab-content">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl border border-gray-200">
+                    <h2 class="text-3xl font-semibold text-[#1a237e] mb-6 border-b-2 border-[#FF9800] pb-3">
+                        Câu Hỏi Thường Gặp (Dành riêng cho Cấp Quản lý)
+                    </h2>
+                    
+                    <div class="accordion-container space-y-3">
+                        <!-- Q10 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-indigo-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: (Quản lý) Công việc của tôi đã quá bận, giờ lại thêm dự án này. Tôi lấy đâu ra thời gian?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Chúng tôi hiểu. Nhưng lý do bạn bận có phải vì đang mất quá nhiều thời gian để "xử lý sự vụ", giải quyết xung đột, hoặc thúc đẩy nhân viên không rõ mục tiêu? Dự án này <strong class="text-[#1a237e]">chính là giải pháp</strong> cho những vấn đề đó. Đây không phải là "việc thêm", mà là "việc quan trọng nhất" để giúp team của bạn và chính bạn làm việc hiệu quả hơn trong dài hạn.</p>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ:</strong> Bạn đang mất 5 tiếng/tuần để giải quyết xung đột giữa team bạn và team khác. Dự án này (với RACI, OKRs) sẽ giúp bạn giảm 5 tiếng đó xuống còn 1 tiếng, vì mọi thứ đã rõ ràng. Hãy đầu tư thời gian "xây đường cao tốc" (dự án) bâyNDAY, để bớt thời gian "đi đường đất" (sự vụ) sau này.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q11 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-indigo-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: (Quản lý) Tôi phải nói gì với nhân viên của mình khi họ lo lắng?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> Bạn là <strong class="text-[#1a237e]">"đại sứ"</strong> quan trọng nhất của dự án.</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li><strong>Đừng né tránh:</strong> Chủ động lắng nghe và thừa nhận sự lo lắng của họ (VD: "Anh/chị hiểu là các bạn đang lo về việc X...").</li>
+                                        <li><strong>Sử dụng tài liệu này:</strong> Trả lời họ một cách minh bạch, thống nhất theo các thông điệp cốt lõi.</li>
+                                        <li><strong>Làm gương:</strong> Thể hiện sự tích cực và cam kết của chính bạn với dự án.</li>
+                                        <li><strong>Thu thập phản hồi:</strong> Tổng hợp các lo lắng của team và báo cáo lại cho Ban Lãnh đạo/Giám đốc Dự án.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q12 -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="accordion-header flex justify-between items-center p-5 bg-indigo-50">
+                                <h4 class="text-lg font-semibold text-[#1a237e]">Q: (Quản lý) Nhân viên của tôi không muốn thay đổi. Tôi phải làm gì?</h4>
+                                <ion-icon name="chevron-down-outline" class="accordion-icon text-2xl text-[#1a237e]"></ion-icon>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="p-5 border-t border-gray-200 text-base text-gray-700 leading-relaxed space-y-3">
+                                    <p><strong class="text-[#009688]">A:</strong> "Sự ngại thay đổi" là điều bình thường. Nhiệm vụ của bạn là giúp họ vượt qua.</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-2">
+                                        <li><strong>Giải thích "Cái lợi" (WIIFM - What's In It For Me?):</strong> Đừng chỉ nói về lợi ích cho công ty, hãy nói về lợi ích cho họ.</li>
+                                        <li><strong>Phân loại:</strong> Sẽ có nhóm (1) ủng hộ, (2) trung lập, và (3) phản đối. Tập trung vào nhóm (1) và (2) để tạo động lực, và trao đổi 1:1 với nhóm (3).</li>
+                                        <li><strong>Yêu cầu sự hỗ trợ:</strong> Nếu có trường hợp chống đối tiêu cực, hãy báo cáo lên cấp trên để cùng xử lý.</li>
+                                    </ul>
+                                    <p class="text-sm italic text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200"><strong class="text-gray-700">Ví dụ WIIFM:</strong><br>
+                                    - "Em sẽ không còn phải tranh cãi với bộ phận X về việc này nữa vì đã có RACI rõ ràng."<br>
+                                    - "Sau dự án này, em sẽ biết rõ mình cần làm gì (phát triển năng lực nào) để được tăng lương, thăng chức, thay vì chờ đợi cảm tính."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Kế Hoạch & Kênh (MỚI) -->
+            <div id="tab-4" class="tab-content">
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl border border-gray-200">
+                    
+                    <h2 class="text-3xl font-semibold text-[#1a237e] mb-6 border-b-2 border-[#FF9800] pb-3">
+                        3. Kế hoạch Truyền thông Chủ động
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-8">Đây là kế hoạch hành động chủ động, đảm bảo chúng ta dẫn dắt câu chuyện thay vì chỉ phản ứng.</p>
+
+                    <div class="relative">
+                        <!-- Mốc 1: GĐ 0 (Trước Kick-off) -->
+                        <div class="timeline-item">
+                            <div class="timeline-icon bg-[#1a237e]">
+                                <ion-icon name="megaphone-outline"></ion-icon>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#1a237e] mb-2">GĐ 0: Trước Kick-off (Tuần 0)</h3>
+                            <ul class="list-disc list-inside text-base text-gray-700 space-y-2">
+                                <li><strong>Mục tiêu:</strong> Thông báo lý do "Tại sao" (Business Case) và cam kết cao nhất từ Ban Lãnh đạo.</li>
+                                <li><strong>Hành động:</strong>
+                                    <ul class="list-disc list-inside ml-6 text-gray-600">
+                                        <li>Email từ CEO (Bà Hoàn) gửi toàn công ty, giải thích "Thế kẹt" và tầm nhìn dự án.</li>
+                                        <li>Họp All-hands: CEO và Giám đốc Dự án (Rosie Giang) chính thức khởi động dự án.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Thông điệp chính:</strong> "Chúng ta đang gặp 'thế kẹt', và đây là cách chúng ta CÙNG NHAU giải quyết nó để vươn lên."</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Mốc 2: GĐ 1 (Sprint Nền tảng) -->
+                        <div class="timeline-item">
+                            <div class="timeline-icon bg-[#5C6BC0]">
+                                <ion-icon name="bonfire-outline"></ion-icon>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#5C6BC0] mb-2">GĐ 1: Sprint (Tháng 1-4)</h3>
+                            <ul class="list-disc list-inside text-base text-gray-700 space-y-2">
+                                <li><strong>Mục tiêu:</strong> Ăn mừng "Chiến thắng Nhanh" (Quick Win) đầu tiên để xây dựng niềm tin và động lực.</li>
+                                <li><strong>Hành động:</strong>
+                                    <ul class="list-disc list-inside ml-6 text-gray-600">
+                                        <li>Bản tin nội bộ/Email: Thông báo về Quick Win #1 (VD: "Xung đột Sales & MKT đã được giải quyết bằng SLA mới").</li>
+                                        <li>Trích dẫn "người thật việc thật" từ TP. Sales & MKT về lợi ích họ nhận được.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Thông điệp chính:</strong> "Thay đổi đã bắt đầu tạo ra kết quả! Công việc của chúng ta đã bớt 'mệt mỏi' hơn."</li>
+                            </ul>
+                        </div>
+
+                        <!-- Mốc 3: GĐ 2 (Vận hành & Tối ưu) -->
+                        <div class="timeline-item">
+                            <div class="timeline-icon bg-[#009688]">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#009688] mb-2">GĐ 2: Vận hành (Tháng 5-9)</h3>
+                            <ul class="list-disc list-inside text-base text-gray-700 space-y-2">
+                                <li><strong>Mục tiêu:</strong> Truyền thông về các hệ thống mới (PMS, Lương 3P), tập trung vào "Cái lợi" (WIIFM) và sự công bằng.</li>
+                                <li><strong>Hành động:</strong>
+                                    <ul class="list-disc list-inside ml-6 text-gray-600">
+                                        <li>Các buổi workshop/đào tạo chi tiết do Quản lý trực tiếp chủ trì (với sự hỗ trợ của BDA).</li>
+                                        <li>Cung cấp tài liệu Q&A (từ Tab 2) cho nhân viên.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Thông điệp chính:</strong> "Đây là 'luật chơi' mới rõ ràng và công bằng. Bạn sẽ biết rõ mình được đánh giá thế nào và lộ trình phát triển ra sao."</li>
+                            </ul>
+                        </div>
+
+                        <!-- Mốc 4: GĐ 3 (Đo lường) -->
+                        <div class="timeline-item">
+                            <div class="timeline-icon bg-[#FF9800]">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#FF9800] mb-2">GĐ 3: Bền vững (Tháng 10-12)</h3>
+                            <ul class="list-disc list-inside text-base text-gray-700 space-y-2">
+                                <li><strong>Mục tiêu:</strong> Chứng minh ROI, chia sẻ kết quả và củng cố sự thay đổi.</li>
+                                <li><strong>Hành động:</strong>
+                                    <ul class="list-disc list-inside ml-6 text-gray-600">
+                                        <li>Họp All-hands cuối năm: BLĐ trình bày kết quả dự án (VD: "eNPS tăng từ 10 lên 50", "Tỷ lệ nghỉ việc giảm").</li>
+                                        <li>Vinh danh các "Nhà vô địch" (Champions) đã hỗ trợ dự án tích cực.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Thông điệp chính:</strong> "Chúng ta đã làm được! Hãy nhìn vào những con số. Đây là thành quả của TẤT CẢ chúng ta."</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2 class="text-3xl font-semibold text-[#1a237e] mt-12 mb-6 border-b-2 border-[#FF9800] pb-3">
+                        4. Kênh Truyền thông & Mục đích
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                            <h3 class="text-xl font-bold text-[#1a237e] mb-2">1. Từ trên xuống (Top-Down)</h3>
+                            <p class="text-base text-gray-700"><strong>Kênh:</strong> Họp All-hands, Email từ CEO.</p>
+                            <p class="text-base text-gray-700 mt-1"><strong>Mục đích:</strong> Truyền tải Tầm nhìn, Cam kết, và các quyết định chiến lược (Tại sao?)</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                            <h3 class="text-xl font-bold text-[#009688] mb-2">2. Quản lý Trực tiếp (Manager-Led)</h3>
+                            <p class="text-base text-gray-700"><strong>Kênh:</strong> Họp team 1:1, Họp phòng ban hàng tuần.</p>
+                            <p class="text-base text-gray-700 mt-1"><strong>Mục đích:</strong> Dịch nghĩa chiến lược, giải thích "Cái lợi" (WIIFM), lắng nghe và giải đáp lo lắng. (Quan trọng nhất!)</p>
+                        </div>
+                        <div class="bg-orange-50 p-6 rounded-lg border border-orange-200">
+                            <h3 class="text-xl font-bold text-[#FF9800] mb-2">3. Từ dưới lên (Bottom-Up)</h3>
+                            <p class="text-base text-gray-700"><strong>Kênh:</strong> Email dự án, Khảo sát, "Nhà vô địch".</p>
+                            <p class="text-base text-gray-700 mt-1"><strong>Mục đích:</strong> Thu thập phản hồi, lo lắng, và các ý tưởng cải tiến từ nhân viên.</p>
+                        </div>
+                        <div class="bg-gray-100 p-6 rounded-lg border border-gray-200">
+                            <h3 class="text-xl font-bold text-gray-700 mb-2">4. Kênh Nội bộ (Internal)</h3>
+                            <p class="text-base text-gray-700"><strong>Kênh:</strong> Bản tin nội bộ, Bảng tin công ty.</p>
+                            <p class="text-base text-gray-700 mt-1"><strong>Mục đích:</strong> Ăn mừng chiến thắng (Quick Wins), vinh danh cá nhân/đội nhóm làm tốt.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a237e] text-white text-center p-6 mt-12 shadow-inner">
+        <p class="font-light tracking-widest uppercase">Rosie Đào Hạnh Giang <span class="text-[#FF9800] font-semibold">CEO Build Talents</span></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+
+            // Accordion functionality
+            const accordions = document.querySelectorAll('.accordion-header');
+
+            accordions.forEach(accordion => {
+                accordion.addEventListener('click', () => {
+                    // Đóng tất cả các accordion khác (nếu muốn)
+                    // accordions.forEach(a => {
+                    //     if (a !== accordion) {
+                    //         a.classList.remove('active');
+                    //         a.nextElementSibling.style.maxHeight = null;
+                    //     }
+                    // });
+
+                    // Toggle accordion hiện tại
+                    accordion.classList.toggle('active');
+                    const content = accordion.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
